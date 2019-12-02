@@ -80,4 +80,5 @@ namespace AisMKIT.Models
     public class Classificators
     {
     }
+
 }

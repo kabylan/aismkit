@@ -25,9 +25,8 @@ namespace AisMKIT
         {
             //Äëÿ Postgresql
             //services.AddDbContext<ApplicationDbContext>();
-            services.AddDbContext<ApplicationDbContext>(options => //options.UsePostgreSql(Configuration.GetConnectionString("DefaultConnection")));
-            options.UseSqlServer(
-                Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => //options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddRoles<IdentityRole>() // <--------                

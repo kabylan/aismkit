@@ -21,6 +21,7 @@ namespace AisMKIT.Data
         public DbSet<ClObjProizIskusTypes> ClObjProizIskusTypes { get; set; }
         public DbSet<ClNagradTypes> ClNagradTypes { get; set; }
         public DbSet<ListOfEducations> ListOfEducations { get; set; }        
+        public DbSet<ListISRCFilms> listISRCFilms { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
