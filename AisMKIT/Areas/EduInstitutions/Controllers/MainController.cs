@@ -43,6 +43,16 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
+            // выбрать факультеты из таблицы ListFaculties
+            // где ListOfEducationsId равняется id
+            // т.е. факультеты этого учебного заведения
+            IEnumerable<Faculty> faculties = _context.ListFaculties
+                .Include(l => l.listOfEducationsModel)
+                .Where(m => m.ListOfEducationsId == id)
+                .ToList();
+
+            ViewBag.Faculties = faculties;
+
             return View(listOfEducations);
         }
 

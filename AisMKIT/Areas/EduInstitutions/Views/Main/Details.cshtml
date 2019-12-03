@@ -1,5 +1,6 @@
 ﻿@model AisMKIT.Models.ListOfEducations
 
+
 @{
     ViewData["Title"] = "Details";
 }
@@ -10,40 +11,40 @@
     <h4>ListOfEducations</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.INN)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.INN)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Address)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Address)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DomenNames)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DomenNames)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DateOfCreated)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DateOfCreated)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ClUchZavedCategory)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ClUchZavedCategory.Name)
         </dd>
     </dl>
@@ -52,3 +53,46 @@
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Название
+            </th>
+            <th>
+                Описание
+            </th>
+            <th>
+                Учебное заведение
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var faculty in ViewBag.Faculties)
+        {
+            <tr>
+                <td>
+                    @faculty.Name
+                </td>
+                <td>
+                    @faculty.Description
+                </td>
+                <td>
+                    @faculty.listOfEducationsModel.Name
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@faculty.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@faculty.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@faculty.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
