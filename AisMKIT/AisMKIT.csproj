@@ -5,6 +5,29 @@
     <UserSecretsId>aspnet-AisMKIT-EC9171DB-F1E9-4695-9486-217CB70A8137</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Areas\Account\Data\**" />
+    <Compile Remove="Areas\Account\Models\**" />
+    <Compile Remove="Areas\CityDistrictCulturalOffices\**" />
+    <Compile Remove="Areas\EducationalInstitutions\**" />
+    <Compile Remove="Areas\InformationMassCommunications\**" />
+    <Content Remove="Areas\Account\Data\**" />
+    <Content Remove="Areas\Account\Models\**" />
+    <Content Remove="Areas\CityDistrictCulturalOffices\**" />
+    <Content Remove="Areas\EducationalInstitutions\**" />
+    <Content Remove="Areas\InformationMassCommunications\**" />
+    <EmbeddedResource Remove="Areas\Account\Data\**" />
+    <EmbeddedResource Remove="Areas\Account\Models\**" />
+    <EmbeddedResource Remove="Areas\CityDistrictCulturalOffices\**" />
+    <EmbeddedResource Remove="Areas\EducationalInstitutions\**" />
+    <EmbeddedResource Remove="Areas\InformationMassCommunications\**" />
+    <None Remove="Areas\Account\Data\**" />
+    <None Remove="Areas\Account\Models\**" />
+    <None Remove="Areas\CityDistrictCulturalOffices\**" />
+    <None Remove="Areas\EducationalInstitutions\**" />
+    <None Remove="Areas\InformationMassCommunications\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
@@ -21,18 +44,68 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\Account\Data\" />
-    <Folder Include="Areas\Account\Models\" />
-    <Folder Include="Areas\CityDistrictCulturalOffices\Controllers\" />
-    <Folder Include="Areas\CityDistrictCulturalOffices\Views\" />
-    <Folder Include="Areas\EducationalInstitutions\Controllers\" />
-    <Folder Include="Areas\EducationalInstitutions\Views\" />
-    <Folder Include="Areas\InformationMassCommunications\Controllers\" />
-    <Folder Include="Areas\InformationMassCommunications\Views\" />
-    <Folder Include="Areas\SubordinateInstitutions\Controllers\" />
-    <Folder Include="Areas\SubordinateInstitutions\Views\" />
     <Folder Include="Areas\Tourism\Controllers\" />
     <Folder Include="Areas\Tourism\Views\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Areas\Awards\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Awards\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Cinematography\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Cinematography\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\CultHeritages\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\CultHeritages\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\CultObjectsAndArts\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\CultObjectsAndArts\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\EduInstitutions\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\EduInstitutions\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Libraries\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Libraries\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\SubInstitutions\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\SubInstitutions\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
