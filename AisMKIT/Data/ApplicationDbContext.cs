@@ -20,8 +20,17 @@ namespace AisMKIT.Data
         public DbSet<ClObjProizIskusCategory> ClObjProizIskusCategory { get; set; }
         public DbSet<ClObjProizIskusTypes> ClObjProizIskusTypes { get; set; }
         public DbSet<ClNagradTypes> ClNagradTypes { get; set; }
-        public DbSet<ListOfEducations> ListOfEducations { get; set; }      
-        
+        // Реестр Учебных заведений
+        public DbSet<ListOfEducations> ListOfEducations { get; set; }
+
+        // дополнительные модели для реестра Учебные заведения
+        // список директоров 
+        public DbSet<Director> ListDirectors { get; set; }
+        // список факультетов
+        public DbSet<Faculty> ListFaculties { get; set; }
+        // список сотрудников
+        public DbSet<Employee> ListEmployees { get; set; }
+
         // Список выданных гос. сертификатов к фильмам за 2019 
         public DbSet<ListISRCFilms> listISRCFilms { get; set; }
 
@@ -39,6 +48,7 @@ namespace AisMKIT.Data
 
         // Реестр подведомственных учреждений Министерства
         public DbSet<SubInstitution> SubInstitutions { get; set; }
+
 
         // Реестр государственных и ведомственных наград    
         public DbSet<Award> Awards { get; set; }
