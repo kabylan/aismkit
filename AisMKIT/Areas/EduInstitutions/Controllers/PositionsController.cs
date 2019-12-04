@@ -23,7 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Positions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Position.ToListAsync());
+            return View(await _context.Positions.ToListAsync());
         }
 
         // GET: EduInstitutions/Positions/Details/5
@@ -34,7 +34,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var position = await _context.Position
+            var position = await _context.Positions
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (position == null)
             {
@@ -74,7 +74,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var position = await _context.Position.FindAsync(id);
+            var position = await _context.Positions.FindAsync(id);
             if (position == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var position = await _context.Position
+            var position = await _context.Positions
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (position == null)
             {
@@ -140,15 +140,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var position = await _context.Position.FindAsync(id);
-            _context.Position.Remove(position);
+            var position = await _context.Positions.FindAsync(id);
+            _context.Positions.Remove(position);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PositionExists(int id)
         {
-            return _context.Position.Any(e => e.Id == id);
+            return _context.Positions.Any(e => e.Id == id);
         }
     }
 }

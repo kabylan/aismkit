@@ -23,7 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/EducationalUnits
         public async Task<IActionResult> Index()
         {
-            return View(await _context.EducationalUnit.ToListAsync());
+            return View(await _context.EducationalUnits.ToListAsync());
         }
 
         // GET: EduInstitutions/EducationalUnits/Details/5
@@ -34,7 +34,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var educationalUnit = await _context.EducationalUnit
+            var educationalUnit = await _context.EducationalUnits
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (educationalUnit == null)
             {
@@ -74,7 +74,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var educationalUnit = await _context.EducationalUnit.FindAsync(id);
+            var educationalUnit = await _context.EducationalUnits.FindAsync(id);
             if (educationalUnit == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var educationalUnit = await _context.EducationalUnit
+            var educationalUnit = await _context.EducationalUnits
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (educationalUnit == null)
             {
@@ -140,15 +140,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var educationalUnit = await _context.EducationalUnit.FindAsync(id);
-            _context.EducationalUnit.Remove(educationalUnit);
+            var educationalUnit = await _context.EducationalUnits.FindAsync(id);
+            _context.EducationalUnits.Remove(educationalUnit);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EducationalUnitExists(int id)
         {
-            return _context.EducationalUnit.Any(e => e.Id == id);
+            return _context.EducationalUnits.Any(e => e.Id == id);
         }
     }
 }

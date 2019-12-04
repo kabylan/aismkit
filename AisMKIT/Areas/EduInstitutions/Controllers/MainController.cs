@@ -42,8 +42,14 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             {
                 return NotFound();
             }
+            //IEnumerable<FacultySpecialty>  = _context.
+            //    .Include(f => f.Faculty) // иниц. самого факультета
+            //    .Include(f => f.Specialty) // иниц. самого специальности
+            //    .Where(m => m.Id == id) // где Id == id
+            //    .ToList();
 
-            // выбрать факультеты из таблицы ListFaculties
+            // Факультеты
+            // выбрать факультеты из таблицы Faculties
             // где ListOfEducationsId равняется id
             // т.е. факультеты этого учебного заведения
             IEnumerable<Faculty> faculties = _context.Faculties
@@ -51,9 +57,55 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 .Where(m => m.ListOfEducationsId == id)
                 .ToList();
 
-            ViewBag.Faculties = faculties;
+            // Факультеты-Специальности
+            IEnumerable<FacultySpecialty> facultySpecialties = _context.FacultySpecialties
+                .Include(f => f.Faculty) // иниц. самого факультета
+                .Include(f => f.Specialty) // иниц. самого специальности
+                .Where(m => m.Faculty.ListOfEducationsId == id) // где Id == id
+                .ToList();
 
-            return View(listOfEducations);
+            // Сотрудники-Должностьи
+            IEnumerable<EmplPosHistory> emplPosHistories = _context.EmplPosHistories
+                .Include(e => e.Employee)
+                .Include(e => e.Faculty)
+                .Include(e => e.Position)
+                .Where(e => e.Faculty.ListOfEducationsId == id) 
+                .ToList();
+
+            // Сотрудники-Подразделения
+            IEnumerable<EmplEducationalUnit> emplEducationalUnits = _context.EmplEducationalUnits
+                .Include(e => e.Employee)
+                .Include(e => e.EducationalUnit)
+                .Include(e => e.Faculty)
+                .Where(e => e.Faculty.ListOfEducationsId == id)
+                .ToList();
+
+            // Все Должности в БД
+            IEnumerable<Position> positions = _context.Positions.ToList();
+
+            // Все Сотрудники в БД
+            IEnumerable<Employee> employees = _context.Employees.ToList();
+
+            // Все Специальности в БД
+            IEnumerable<Specialty> specialties = _context.Specialties.ToList();
+
+            // Все Подразделения в БД
+            IEnumerable<EducationalUnit> educationalUnits = _context.EducationalUnits.ToList();
+
+            // Все нужные перечисления в представлении, содержаться в модели ListsEduInstitutions
+            ListsEduInstitutions listsForEduInstitution = new ListsEduInstitutions();
+
+            listsForEduInstitution.EduInstitution = listOfEducations; // Рассматриваемая Учебное заведение
+            listsForEduInstitution.Faculties = faculties;
+            listsForEduInstitution.FacultySpecialties = facultySpecialties;
+            listsForEduInstitution.EmplPosHistories = emplPosHistories;
+            listsForEduInstitution.EmplEducationalUnits = emplEducationalUnits;
+            listsForEduInstitution.Positions = positions;
+            listsForEduInstitution.Employees = employees;
+            listsForEduInstitution.Specialties = specialties;
+            listsForEduInstitution.EducationalUnits = educationalUnits;
+
+            return View(listsForEduInstitution);
         }
 
         // GET: EduInstitutions/Main/Create

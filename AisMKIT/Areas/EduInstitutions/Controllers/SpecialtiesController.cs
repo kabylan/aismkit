@@ -23,7 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Specialties
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Specialty.ToListAsync());
+            return View(await _context.Specialties.ToListAsync());
         }
 
         // GET: EduInstitutions/Specialties/Details/5
@@ -34,7 +34,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var specialty = await _context.Specialty
+            var specialty = await _context.Specialties
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (specialty == null)
             {
@@ -74,7 +74,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var specialty = await _context.Specialty.FindAsync(id);
+            var specialty = await _context.Specialties.FindAsync(id);
             if (specialty == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var specialty = await _context.Specialty
+            var specialty = await _context.Specialties
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (specialty == null)
             {
@@ -140,15 +140,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var specialty = await _context.Specialty.FindAsync(id);
-            _context.Specialty.Remove(specialty);
+            var specialty = await _context.Specialties.FindAsync(id);
+            _context.Specialties.Remove(specialty);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SpecialtyExists(int id)
         {
-            return _context.Specialty.Any(e => e.Id == id);
+            return _context.Specialties.Any(e => e.Id == id);
         }
     }
 }

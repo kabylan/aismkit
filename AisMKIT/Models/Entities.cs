@@ -37,8 +37,6 @@ namespace AisMKIT.Models
         // список факультетов 
         public IEnumerable<Faculty> ListFaculties { get; set; }
 
-        // список сотрудников
-        public IEnumerable<Employee> ListEmployees { get; set; }
     }
 
     // Модель для 

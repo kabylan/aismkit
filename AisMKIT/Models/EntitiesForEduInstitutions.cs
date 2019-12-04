@@ -104,6 +104,10 @@ namespace AisMKIT.Models
         public int? EducationalUnitId { get; set; }
 
         public EducationalUnit EducationalUnit { get; set; }
+
+        public int? FacultyId { get; set; }
+
+        public Faculty Faculty { get; set; }
     }
 
 

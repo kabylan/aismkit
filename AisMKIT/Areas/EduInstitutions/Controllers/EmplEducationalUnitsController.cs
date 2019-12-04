@@ -23,7 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/EmplEducationalUnits
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.EmplEducationalUnit.Include(e => e.EducationalUnit).Include(e => e.Employee);
+            var applicationDbContext = _context.EmplEducationalUnits.Include(e => e.EducationalUnit).Include(e => e.Employee).Include(e => e.Faculty);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,9 +35,10 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var emplEducationalUnit = await _context.EmplEducationalUnit
+            var emplEducationalUnit = await _context.EmplEducationalUnits
                 .Include(e => e.EducationalUnit)
                 .Include(e => e.Employee)
+                .Include(e => e.Faculty)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (emplEducationalUnit == null)
             {
@@ -50,8 +51,9 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/EmplEducationalUnits/Create
         public IActionResult Create()
         {
-            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Name");
+            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnits, "Id", "Name");
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName");
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name");
             return View();
         }
 
@@ -60,7 +62,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,EmployeeId,EducationalUnitId")] EmplEducationalUnit emplEducationalUnit)
+        public async Task<IActionResult> Create([Bind("Id,EmployeeId,EducationalUnitId,FacultyId")] EmplEducationalUnit emplEducationalUnit)
         {
             if (ModelState.IsValid)
             {
@@ -68,8 +70,9 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Name", emplEducationalUnit.EducationalUnitId);
+            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnits, "Id", "Name", emplEducationalUnit.EducationalUnitId);
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplEducationalUnit.EmployeeId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", emplEducationalUnit.FacultyId);
             return View(emplEducationalUnit);
         }
 
@@ -81,13 +84,14 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var emplEducationalUnit = await _context.EmplEducationalUnit.FindAsync(id);
+            var emplEducationalUnit = await _context.EmplEducationalUnits.FindAsync(id);
             if (emplEducationalUnit == null)
             {
                 return NotFound();
             }
-            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Name", emplEducationalUnit.EducationalUnitId);
+            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnits, "Id", "Name", emplEducationalUnit.EducationalUnitId);
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplEducationalUnit.EmployeeId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", emplEducationalUnit.FacultyId);
             return View(emplEducationalUnit);
         }
 
@@ -96,7 +100,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeId,EducationalUnitId")] EmplEducationalUnit emplEducationalUnit)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeId,EducationalUnitId,FacultyId")] EmplEducationalUnit emplEducationalUnit)
         {
             if (id != emplEducationalUnit.Id)
             {
@@ -123,8 +127,9 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Name", emplEducationalUnit.EducationalUnitId);
+            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnits, "Id", "Name", emplEducationalUnit.EducationalUnitId);
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplEducationalUnit.EmployeeId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", emplEducationalUnit.FacultyId);
             return View(emplEducationalUnit);
         }
 
@@ -136,9 +141,10 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var emplEducationalUnit = await _context.EmplEducationalUnit
+            var emplEducationalUnit = await _context.EmplEducationalUnits
                 .Include(e => e.EducationalUnit)
                 .Include(e => e.Employee)
+                .Include(e => e.Faculty)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (emplEducationalUnit == null)
             {
@@ -153,15 +159,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var emplEducationalUnit = await _context.EmplEducationalUnit.FindAsync(id);
-            _context.EmplEducationalUnit.Remove(emplEducationalUnit);
+            var emplEducationalUnit = await _context.EmplEducationalUnits.FindAsync(id);
+            _context.EmplEducationalUnits.Remove(emplEducationalUnit);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EmplEducationalUnitExists(int id)
         {
-            return _context.EmplEducationalUnit.Any(e => e.Id == id);
+            return _context.EmplEducationalUnits.Any(e => e.Id == id);
         }
     }
 }

@@ -34,10 +34,17 @@ namespace AisMKIT.Data
         // список сотрудников
         public DbSet<Employee> Employees { get; set; }
         
-        public DbSet<AisMKIT.Models.EmplPosHistory> EmplPosHistory { get; set; }
+        public DbSet<AisMKIT.Models.EmplPosHistory> EmplPosHistories { get; set; }
 
-        public DbSet<AisMKIT.Models.Position> Position { get; set; }
+        public DbSet<AisMKIT.Models.Position> Positions { get; set; }
 
+        public DbSet<AisMKIT.Models.Specialty> Specialties { get; set; }
+
+        public DbSet<AisMKIT.Models.FacultySpecialty> FacultySpecialties { get; set; }
+
+        public DbSet<AisMKIT.Models.EducationalUnit> EducationalUnits { get; set; }
+
+        public DbSet<AisMKIT.Models.EmplEducationalUnit> EmplEducationalUnits { get; set; }
 
 
 
@@ -71,18 +78,6 @@ namespace AisMKIT.Data
             : base(options)
         {
         }
-
-
-        public DbSet<AisMKIT.Models.Specialty> Specialty { get; set; }
-
-
-        public DbSet<AisMKIT.Models.FacultySpecialty> FacultySpecialty { get; set; }
-
-
-        public DbSet<AisMKIT.Models.EducationalUnit> EducationalUnit { get; set; }
-
-
-        public DbSet<AisMKIT.Models.EmplEducationalUnit> EmplEducationalUnit { get; set; }
 
 
 

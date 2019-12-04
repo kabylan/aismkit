@@ -23,7 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/FacultySpecialties
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.FacultySpecialty.Include(f => f.Faculty).Include(f => f.Specialty);
+            var applicationDbContext = _context.FacultySpecialties.Include(f => f.Faculty).Include(f => f.Specialty);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var facultySpecialty = await _context.FacultySpecialty
+            var facultySpecialty = await _context.FacultySpecialties
                 .Include(f => f.Faculty)
                 .Include(f => f.Specialty)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -51,7 +51,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         public IActionResult Create()
         {
             ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name");
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Name");
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "Id", "Name");
             return View();
         }
 
@@ -69,7 +69,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", facultySpecialty.FacultyId);
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Name", facultySpecialty.SpecialtyId);
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "Id", "Name", facultySpecialty.SpecialtyId);
             return View(facultySpecialty);
         }
 
@@ -81,13 +81,13 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var facultySpecialty = await _context.FacultySpecialty.FindAsync(id);
+            var facultySpecialty = await _context.FacultySpecialties.FindAsync(id);
             if (facultySpecialty == null)
             {
                 return NotFound();
             }
             ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", facultySpecialty.FacultyId);
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Name", facultySpecialty.SpecialtyId);
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "Id", "Name", facultySpecialty.SpecialtyId);
             return View(facultySpecialty);
         }
 
@@ -124,7 +124,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", facultySpecialty.FacultyId);
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Name", facultySpecialty.SpecialtyId);
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "Id", "Name", facultySpecialty.SpecialtyId);
             return View(facultySpecialty);
         }
 
@@ -136,7 +136,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var facultySpecialty = await _context.FacultySpecialty
+            var facultySpecialty = await _context.FacultySpecialties
                 .Include(f => f.Faculty)
                 .Include(f => f.Specialty)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -153,15 +153,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var facultySpecialty = await _context.FacultySpecialty.FindAsync(id);
-            _context.FacultySpecialty.Remove(facultySpecialty);
+            var facultySpecialty = await _context.FacultySpecialties.FindAsync(id);
+            _context.FacultySpecialties.Remove(facultySpecialty);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool FacultySpecialtyExists(int id)
         {
-            return _context.FacultySpecialty.Any(e => e.Id == id);
+            return _context.FacultySpecialties.Any(e => e.Id == id);
         }
     }
 }

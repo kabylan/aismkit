@@ -23,7 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/EmplPosHistories
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.EmplPosHistory.Include(e => e.Employee).Include(e => e.Faculty).Include(e => e.Position);
+            var applicationDbContext = _context.EmplPosHistories.Include(e => e.Employee).Include(e => e.Faculty).Include(e => e.Position);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var emplPosHistory = await _context.EmplPosHistory
+            var emplPosHistory = await _context.EmplPosHistories
                 .Include(e => e.Employee)
                 .Include(e => e.Faculty)
                 .Include(e => e.Position)
@@ -85,7 +85,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var emplPosHistory = await _context.EmplPosHistory.FindAsync(id);
+            var emplPosHistory = await _context.EmplPosHistories.FindAsync(id);
             if (emplPosHistory == null)
             {
                 return NotFound();
@@ -142,7 +142,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var emplPosHistory = await _context.EmplPosHistory
+            var emplPosHistory = await _context.EmplPosHistories
                 .Include(e => e.Employee)
                 .Include(e => e.Faculty)
                 .Include(e => e.Position)
@@ -160,15 +160,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var emplPosHistory = await _context.EmplPosHistory.FindAsync(id);
-            _context.EmplPosHistory.Remove(emplPosHistory);
+            var emplPosHistory = await _context.EmplPosHistories.FindAsync(id);
+            _context.EmplPosHistories.Remove(emplPosHistory);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EmplPosHistoryExists(int id)
         {
-            return _context.EmplPosHistory.Any(e => e.Id == id);
+            return _context.EmplPosHistories.Any(e => e.Id == id);
         }
     }
 }

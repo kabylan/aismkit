@@ -1,4 +1,4 @@
-﻿@model AisMKIT.Models.ListOfEducations
+﻿@model AisMKIT.Models.ListsEduInstitutions
 
 
 @{
@@ -12,85 +12,353 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.INN)
+            @Html.DisplayNameFor(model => model.EduInstitution.INN)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.INN)
+            @Html.DisplayFor(model => model.EduInstitution.INN)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.EduInstitution.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.EduInstitution.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.EduInstitution.Address)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Address)
+            @Html.DisplayFor(model => model.EduInstitution.Address)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DomenNames)
+            @Html.DisplayNameFor(model => model.EduInstitution.DomenNames)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DomenNames)
+            @Html.DisplayFor(model => model.EduInstitution.DomenNames)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOfCreated)
+            @Html.DisplayNameFor(model => model.EduInstitution.DateOfCreated)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DateOfCreated)
+            @Html.DisplayFor(model => model.EduInstitution.DateOfCreated)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ClUchZavedCategory)
+            @Html.DisplayNameFor(model => model.EduInstitution.ClUchZavedCategory)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ClUchZavedCategory.Name)
+            @Html.DisplayFor(model => model.EduInstitution.ClUchZavedCategory.Name)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.EduInstitution.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
 
 
+<h1>Faculties</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-controller="Faculties" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Название
+                @Html.DisplayNameFor(model => model.Faculties.FirstOrDefault().Name)
             </th>
             <th>
-                Описание
+                @Html.DisplayNameFor(model => model.Faculties.FirstOrDefault().Description)
             </th>
             <th>
-                Учебное заведение
+                @Html.DisplayNameFor(model => model.Faculties.FirstOrDefault().listOfEducationsModel)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var faculty in ViewBag.Faculties)
+        @foreach (var item in Model.Faculties)
         {
             <tr>
                 <td>
-                    @faculty.Name
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @faculty.Description
+                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @faculty.listOfEducationsModel.Name
+                    @Html.DisplayFor(modelItem => item.listOfEducationsModel.Address)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@faculty.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@faculty.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@faculty.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h1>Faculties Specialties</h1>
+
+<p>
+    <a asp-controller="FacultySpecialties" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FacultySpecialties.FirstOrDefault().Specialty.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FacultySpecialties.FirstOrDefault().Faculty.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FacultySpecialties)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialty.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Faculty.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h1>Employee Position Histories</h1>
+
+<p>
+    <a asp-controller="EmplPosHistories" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmplPosHistories.FirstOrDefault().Employee.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmplPosHistories.FirstOrDefault().Position.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmplPosHistories.FirstOrDefault().Faculty.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmplPosHistories)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Faculty.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h1>Employee Educational Units</h1>
+
+<p>
+    <a asp-controller="EmplEducationalUnits" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmplEducationalUnits.FirstOrDefault().Employee.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmplEducationalUnits.FirstOrDefault().EducationalUnit.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmplEducationalUnits.FirstOrDefault().Faculty.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmplEducationalUnits)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EducationalUnit.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Faculty.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h1>Positions</h1>
+
+<p>
+    <a asp-controller="Positions" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Positions.FirstOrDefault().Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Positions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+<h1>Employees</h1>
+
+<p>
+    <a asp-controller="Employees" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees.FirstOrDefault().FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employees.FirstOrDefault().SecondName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Employees)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h1>Specialties</h1>
+
+<p>
+    <a asp-controller="Specialties" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Specialties.FirstOrDefault().Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Specialties)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<h1>Educaional Units</h1>
+
+<p>
+    <a asp-controller="EducationalUnits" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EducationalUnits.FirstOrDefault().Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EducationalUnits)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
