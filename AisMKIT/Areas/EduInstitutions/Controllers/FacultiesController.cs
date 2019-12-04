@@ -23,7 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Faculties
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ListFaculties.Include(f => f.listOfEducationsModel);
+            var applicationDbContext = _context.Faculties.Include(f => f.listOfEducationsModel);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var faculty = await _context.ListFaculties
+            var faculty = await _context.Faculties
                 .Include(f => f.listOfEducationsModel)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (faculty == null)
@@ -49,7 +49,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Faculties/Create
         public IActionResult Create()
         {
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name");
+            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Address");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", faculty.ListOfEducationsId);
+            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Address", faculty.ListOfEducationsId);
             return View(faculty);
         }
 
@@ -78,12 +78,12 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var faculty = await _context.ListFaculties.FindAsync(id);
+            var faculty = await _context.Faculties.FindAsync(id);
             if (faculty == null)
             {
                 return NotFound();
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", faculty.ListOfEducationsId);
+            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Address", faculty.ListOfEducationsId);
             return View(faculty);
         }
 
@@ -119,7 +119,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", faculty.ListOfEducationsId);
+            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Address", faculty.ListOfEducationsId);
             return View(faculty);
         }
 
@@ -131,7 +131,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var faculty = await _context.ListFaculties
+            var faculty = await _context.Faculties
                 .Include(f => f.listOfEducationsModel)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (faculty == null)
@@ -147,15 +147,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var faculty = await _context.ListFaculties.FindAsync(id);
-            _context.ListFaculties.Remove(faculty);
+            var faculty = await _context.Faculties.FindAsync(id);
+            _context.Faculties.Remove(faculty);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool FacultyExists(int id)
         {
-            return _context.ListFaculties.Any(e => e.Id == id);
+            return _context.Faculties.Any(e => e.Id == id);
         }
     }
 }

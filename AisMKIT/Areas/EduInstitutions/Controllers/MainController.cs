@@ -46,7 +46,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             // выбрать факультеты из таблицы ListFaculties
             // где ListOfEducationsId равняется id
             // т.е. факультеты этого учебного заведения
-            IEnumerable<Faculty> faculties = _context.ListFaculties
+            IEnumerable<Faculty> faculties = _context.Faculties
                 .Include(l => l.listOfEducationsModel)
                 .Where(m => m.ListOfEducationsId == id)
                 .ToList();

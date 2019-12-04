@@ -34,9 +34,6 @@ namespace AisMKIT.Models
         public int ClUchZavedCategoryId { get; set; }
         public ClUchZavedCategory ClUchZavedCategory { get; set; }
 
-        // список директаров 
-        public IEnumerable<Director> ListDirectors { get; set; }
-
         // список факультетов 
         public IEnumerable<Faculty> ListFaculties { get; set; }
 

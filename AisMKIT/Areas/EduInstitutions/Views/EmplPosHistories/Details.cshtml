@@ -1,4 +1,4 @@
-﻿@model AisMKIT.Models.Faculty
+﻿@model AisMKIT.Models.EmplPosHistory
 
 @{
     ViewData["Title"] = "Details";
@@ -7,26 +7,26 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Faculty</h4>
+    <h4>EmplPosHistory</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Employee)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Employee.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Position)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Position.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.listOfEducationsModel)
+            @Html.DisplayNameFor(model => model.Faculty)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.listOfEducationsModel.Address)
+            @Html.DisplayFor(model => model.Faculty.Id)
         </dd>
     </dl>
 </div>

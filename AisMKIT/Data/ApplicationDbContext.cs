@@ -20,16 +20,27 @@ namespace AisMKIT.Data
         public DbSet<ClObjProizIskusCategory> ClObjProizIskusCategory { get; set; }
         public DbSet<ClObjProizIskusTypes> ClObjProizIskusTypes { get; set; }
         public DbSet<ClNagradTypes> ClNagradTypes { get; set; }
+
+
+
+
+
         // Реестр Учебных заведений
         public DbSet<ListOfEducations> ListOfEducations { get; set; }
 
         // дополнительные модели для реестра Учебные заведения
-        // список директоров 
-        public DbSet<Director> ListDirectors { get; set; }
         // список факультетов
-        public DbSet<Faculty> ListFaculties { get; set; }
+        public DbSet<Faculty> Faculties { get; set; }
         // список сотрудников
-        public DbSet<Employee> ListEmployees { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        
+        public DbSet<AisMKIT.Models.EmplPosHistory> EmplPosHistory { get; set; }
+
+        public DbSet<AisMKIT.Models.Position> Position { get; set; }
+
+
+
+
 
         // Список выданных гос. сертификатов к фильмам за 2019 
         public DbSet<ListISRCFilms> listISRCFilms { get; set; }
@@ -60,6 +71,9 @@ namespace AisMKIT.Data
             : base(options)
         {
         }
+
+
+
         //Для postgresql
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

@@ -23,8 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Employees
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ListEmployees.Include(e => e.listOfEducationsModel);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Employees.ToListAsync());
         }
 
         // GET: EduInstitutions/Employees/Details/5
@@ -35,8 +34,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.ListEmployees
-                .Include(e => e.listOfEducationsModel)
+            var employee = await _context.Employees
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
             {
@@ -49,7 +47,6 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Employees/Create
         public IActionResult Create()
         {
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name");
             return View();
         }
 
@@ -58,7 +55,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,SecondName,PositionHeld,ListOfEducationsId")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,SecondName")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +63,6 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", employee.ListOfEducationsId);
             return View(employee);
         }
 
@@ -78,12 +74,11 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.ListEmployees.FindAsync(id);
+            var employee = await _context.Employees.FindAsync(id);
             if (employee == null)
             {
                 return NotFound();
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", employee.ListOfEducationsId);
             return View(employee);
         }
 
@@ -92,7 +87,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,SecondName,PositionHeld,ListOfEducationsId")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,SecondName")] Employee employee)
         {
             if (id != employee.Id)
             {
@@ -119,7 +114,6 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Address", employee.ListOfEducationsId);
             return View(employee);
         }
 
@@ -131,8 +125,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.ListEmployees
-                .Include(e => e.listOfEducationsModel)
+            var employee = await _context.Employees
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
             {
@@ -147,15 +140,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var employee = await _context.ListEmployees.FindAsync(id);
-            _context.ListEmployees.Remove(employee);
+            var employee = await _context.Employees.FindAsync(id);
+            _context.Employees.Remove(employee);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EmployeeExists(int id)
         {
-            return _context.ListEmployees.Any(e => e.Id == id);
+            return _context.Employees.Any(e => e.Id == id);
         }
     }
 }
