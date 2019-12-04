@@ -73,6 +73,18 @@ namespace AisMKIT.Data
         }
 
 
+        public DbSet<AisMKIT.Models.Specialty> Specialty { get; set; }
+
+
+        public DbSet<AisMKIT.Models.FacultySpecialty> FacultySpecialty { get; set; }
+
+
+        public DbSet<AisMKIT.Models.EducationalUnit> EducationalUnit { get; set; }
+
+
+        public DbSet<AisMKIT.Models.EmplEducationalUnit> EmplEducationalUnit { get; set; }
+
+
 
         //Для postgresql
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

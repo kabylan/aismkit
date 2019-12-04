@@ -61,5 +61,49 @@ namespace AisMKIT.Models
         public Faculty Faculty { get; set; }
     }
    
+    // модель Специальность
+    public class Specialty
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
+
+    // модель-промежуточный для Факультет-Специальность 
+    public class FacultySpecialty
+    {
+        public int Id { get; set; }
+
+        public int? SpecialtyId { get; set; }
+
+        public Specialty Specialty { get; set; }
+
+        public int? FacultyId { get; set; }
+
+        public Faculty Faculty { get; set; }
+    }
+
+    // модель Подразделение (Учебного заведения)
+    public class EducationalUnit
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
+
+    // модель-промежуточный для Сотрудник-Подразделение
+    public class EmplEducationalUnit
+    {
+        public int Id { get; set; }
+
+        public int? EmployeeId { get; set; }
+
+        public Employee Employee { get; set; }
+
+        public int? EducationalUnitId { get; set; }
+
+        public EducationalUnit EducationalUnit { get; set; }
+    }
+
 
 }
