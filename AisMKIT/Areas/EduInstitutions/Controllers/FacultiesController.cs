@@ -49,7 +49,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Faculties/Create
         public IActionResult Create()
         {
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Address");
+            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Address", faculty.ListOfEducationsId);
+            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", faculty.ListOfEducationsId);
             return View(faculty);
         }
 
@@ -83,7 +83,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             {
                 return NotFound();
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Address", faculty.ListOfEducationsId);
+            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", faculty.ListOfEducationsId);
             return View(faculty);
         }
 
@@ -119,7 +119,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Address", faculty.ListOfEducationsId);
+            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", faculty.ListOfEducationsId);
             return View(faculty);
         }
 

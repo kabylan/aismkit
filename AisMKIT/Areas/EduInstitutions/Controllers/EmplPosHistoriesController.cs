@@ -51,9 +51,10 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/EmplPosHistories/Create
         public IActionResult Create()
         {
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id");
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id");
-            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Id");
+            // new SelectList(IEnumerable, "Value", "Text");
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName");
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name");
+            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Name");
             return View();
         }
 
@@ -70,9 +71,9 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", emplPosHistory.EmployeeId);
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id", emplPosHistory.FacultyId);
-            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Id", emplPosHistory.PositionId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplPosHistory.EmployeeId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", emplPosHistory.FacultyId);
+            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Name", emplPosHistory.PositionId);
             return View(emplPosHistory);
         }
 
@@ -89,9 +90,9 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", emplPosHistory.EmployeeId);
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id", emplPosHistory.FacultyId);
-            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Id", emplPosHistory.PositionId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplPosHistory.EmployeeId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", emplPosHistory.FacultyId);
+            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Name", emplPosHistory.PositionId);
             return View(emplPosHistory);
         }
 
@@ -127,9 +128,9 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", emplPosHistory.EmployeeId);
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id", emplPosHistory.FacultyId);
-            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Id", emplPosHistory.PositionId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplPosHistory.EmployeeId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", emplPosHistory.FacultyId);
+            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Name", emplPosHistory.PositionId);
             return View(emplPosHistory);
         }
 

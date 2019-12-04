@@ -50,8 +50,8 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/FacultySpecialties/Create
         public IActionResult Create()
         {
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id");
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Id");
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name");
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Name");
             return View();
         }
 
@@ -68,8 +68,8 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id", facultySpecialty.FacultyId);
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Id", facultySpecialty.SpecialtyId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", facultySpecialty.FacultyId);
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Name", facultySpecialty.SpecialtyId);
             return View(facultySpecialty);
         }
 
@@ -86,8 +86,8 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             {
                 return NotFound();
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id", facultySpecialty.FacultyId);
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Id", facultySpecialty.SpecialtyId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", facultySpecialty.FacultyId);
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Name", facultySpecialty.SpecialtyId);
             return View(facultySpecialty);
         }
 
@@ -123,8 +123,8 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Id", facultySpecialty.FacultyId);
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Id", facultySpecialty.SpecialtyId);
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", facultySpecialty.FacultyId);
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialty, "Id", "Name", facultySpecialty.SpecialtyId);
             return View(facultySpecialty);
         }
 

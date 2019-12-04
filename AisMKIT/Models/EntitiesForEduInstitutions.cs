@@ -32,6 +32,7 @@ namespace AisMKIT.Models
 
         public string SecondName { get; set; }
 
+        public string FullName { get { return FirstName + " " + SecondName; } set { } }
 
     }
 

@@ -50,8 +50,8 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/EmplEducationalUnits/Create
         public IActionResult Create()
         {
-            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Id");
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id");
+            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Name");
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName");
             return View();
         }
 
@@ -68,8 +68,8 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Id", emplEducationalUnit.EducationalUnitId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", emplEducationalUnit.EmployeeId);
+            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Name", emplEducationalUnit.EducationalUnitId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplEducationalUnit.EmployeeId);
             return View(emplEducationalUnit);
         }
 
@@ -86,8 +86,8 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             {
                 return NotFound();
             }
-            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Id", emplEducationalUnit.EducationalUnitId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", emplEducationalUnit.EmployeeId);
+            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Name", emplEducationalUnit.EducationalUnitId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplEducationalUnit.EmployeeId);
             return View(emplEducationalUnit);
         }
 
@@ -123,8 +123,8 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Id", emplEducationalUnit.EducationalUnitId);
-            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", emplEducationalUnit.EmployeeId);
+            ViewData["EducationalUnitId"] = new SelectList(_context.EducationalUnit, "Id", "Name", emplEducationalUnit.EducationalUnitId);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplEducationalUnit.EmployeeId);
             return View(emplEducationalUnit);
         }
 
