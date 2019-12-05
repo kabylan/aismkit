@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Подробности</h1>
 
 <div>
-    <h4>EduInstitution</h4>
+    <h4>Учебное заведение</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -67,16 +67,17 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.EduInstitution.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.EduInstitution.Id">Редактировать</a>
 </div>
 
+<br />
+<br />
 
 
-<h1>Faculties</h1>
+<h3>Факультеты</h3>
 
 <p>
-    <a asp-controller="Faculties" asp-action="Create">Create New</a>
+    <a asp-controller="Faculties" asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -104,12 +105,12 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EduInstitution.Address)
+                    @Html.DisplayFor(modelItem => item.EduInstitution.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="Faculties" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="Faculties" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-controller="Faculties" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
@@ -117,10 +118,13 @@
 </table>
 
 
-<h1>Faculties Specialties</h1>
+<br />
+<br />
+
+<h3>Специальности в факультетах</h3>
 
 <p>
-    <a asp-controller="FacultySpecialties" asp-action="Create">Create New</a>
+    <a asp-controller="FacultySpecialties" asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -145,9 +149,9 @@
                     @Html.DisplayFor(modelItem => item.Faculty.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="FacultySpecialties" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="FacultySpecialties" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-controller="FacultySpecialties" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
@@ -155,11 +159,13 @@
 </table>
 
 
+<br />
+<br />
 
-<h1>Employee Position Histories</h1>
+<h3>Сотрудники и их занимаемые должности</h3>
 
 <p>
-    <a asp-controller="EmplPosHistories" asp-action="Create">Create New</a>
+    <a asp-controller="EmplPosHistories" asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -190,9 +196,9 @@
                     @Html.DisplayFor(modelItem => item.Faculty.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="EmplPosHistories" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="EmplPosHistories" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-controller="EmplPosHistories" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
@@ -200,11 +206,13 @@
 </table>
 
 
+<br />
+<br />
 
-<h1>Employee Educational Units</h1>
+<h3>Сотрудники в подразделениях</h3>
 
 <p>
-    <a asp-controller="EmplEducationalUnits" asp-action="Create">Create New</a>
+    <a asp-controller="EmplEducationalUnits" asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -235,9 +243,9 @@
                     @Html.DisplayFor(modelItem => item.Faculty.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="EmplEducationalUnits" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="EmplEducationalUnits" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-controller="EmplEducationalUnits" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
@@ -245,11 +253,13 @@
 </table>
 
 
+<br />
+<br />
 
-<h1>Positions</h1>
+<h3>Должности</h3>
 
 <p>
-    <a asp-controller="Positions" asp-action="Create">Create New</a>
+    <a asp-controller="Positions" asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -268,9 +278,9 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="Positions" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="Positions" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-controller="Positions" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
@@ -278,12 +288,14 @@
 </table>
 
 
+<br />
+<br />
 
 
-<h1>Employees</h1>
+<h3>Сотрудники</h3>
 
 <p>
-    <a asp-controller="Employees" asp-action="Create">Create New</a>
+    <a asp-controller="Employees" asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -308,9 +320,9 @@
                     @Html.DisplayFor(modelItem => item.SecondName)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="Employees" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="Employees" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-controller="Employees" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
@@ -318,11 +330,13 @@
 </table>
 
 
+<br />
+<br />
 
-<h1>Specialties</h1>
+<h3>Специальности</h3>
 
 <p>
-    <a asp-controller="Specialties" asp-action="Create">Create New</a>
+    <a asp-controller="Specialties" asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -341,9 +355,9 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="Specialties" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="Specialties" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-controller="Specialties" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
@@ -351,11 +365,13 @@
 </table>
 
 
+<br />
+<br />
 
-<h1>Educaional Units</h1>
+<h3>Подразделения</h3>
 
 <p>
-    <a asp-controller="EducationalUnits" asp-action="Create">Create New</a>
+    <a asp-controller="EducationalUnits" asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -374,11 +390,18 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-controller="EducationalUnits" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="EducationalUnits" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-controller="EducationalUnits" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<br />
+<br />
+
+<div>
+    <a asp-action="Index">Назад</a>
+</div>
