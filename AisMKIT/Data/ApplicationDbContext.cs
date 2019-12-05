@@ -26,7 +26,7 @@ namespace AisMKIT.Data
 
 
         // Реестр Учебных заведений
-        public DbSet<ListOfEducations> ListOfEducations { get; set; }
+        public DbSet<EduInstitution> EduInstitutions { get; set; }
 
         // дополнительные модели для реестра Учебные заведения
         // список факультетов

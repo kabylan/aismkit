@@ -55,7 +55,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,SecondName")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,SecondName,FullName")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,SecondName")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,SecondName,FullName")] Employee employee)
         {
             if (id != employee.Id)
             {

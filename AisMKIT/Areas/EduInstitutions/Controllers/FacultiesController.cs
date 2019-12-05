@@ -23,7 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Faculties
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Faculties.Include(f => f.listOfEducationsModel);
+            var applicationDbContext = _context.Faculties.Include(f => f.EduInstitution);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,7 +36,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             }
 
             var faculty = await _context.Faculties
-                .Include(f => f.listOfEducationsModel)
+                .Include(f => f.EduInstitution)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (faculty == null)
             {
@@ -49,7 +49,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Faculties/Create
         public IActionResult Create()
         {
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name");
+            ViewData["EduInstitutionId"] = new SelectList(_context.EduInstitutions, "Id", "Name");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,ListOfEducationsId")] Faculty faculty)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,EduInstitutionId")] Faculty faculty)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", faculty.ListOfEducationsId);
+            ViewData["EduInstitutionId"] = new SelectList(_context.EduInstitutions, "Id", "Name", faculty.EduInstitutionId);
             return View(faculty);
         }
 
@@ -83,7 +83,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             {
                 return NotFound();
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", faculty.ListOfEducationsId);
+            ViewData["EduInstitutionId"] = new SelectList(_context.EduInstitutions, "Id", "Name", faculty.EduInstitutionId);
             return View(faculty);
         }
 
@@ -92,7 +92,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ListOfEducationsId")] Faculty faculty)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,EduInstitutionId")] Faculty faculty)
         {
             if (id != faculty.Id)
             {
@@ -119,7 +119,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ListOfEducationsId"] = new SelectList(_context.ListOfEducations, "Id", "Name", faculty.ListOfEducationsId);
+            ViewData["EduInstitutionId"] = new SelectList(_context.EduInstitutions, "Id", "Name", faculty.EduInstitutionId);
             return View(faculty);
         }
 
@@ -132,7 +132,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             }
 
             var faculty = await _context.Faculties
-                .Include(f => f.listOfEducationsModel)
+                .Include(f => f.EduInstitution)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (faculty == null)
             {

@@ -51,10 +51,9 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/EmplPosHistories/Create
         public IActionResult Create()
         {
-            // new SelectList(IEnumerable, "Value", "Text");
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName");
             ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name");
-            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Name");
+            ViewData["PositionId"] = new SelectList(_context.Positions, "Id", "Name");
             return View();
         }
 
@@ -63,7 +62,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,EmployeeId,PositionId,FacultyId")] EmplPosHistory emplPosHistory)
+        public async Task<IActionResult> Create([Bind("Id,EmployeeId,PositionId,WorkStartDate,WorkEndDate,FacultyId")] EmplPosHistory emplPosHistory)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +72,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplPosHistory.EmployeeId);
             ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", emplPosHistory.FacultyId);
-            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Name", emplPosHistory.PositionId);
+            ViewData["PositionId"] = new SelectList(_context.Positions, "Id", "Name", emplPosHistory.PositionId);
             return View(emplPosHistory);
         }
 
@@ -92,7 +91,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplPosHistory.EmployeeId);
             ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", emplPosHistory.FacultyId);
-            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Name", emplPosHistory.PositionId);
+            ViewData["PositionId"] = new SelectList(_context.Positions, "Id", "Name", emplPosHistory.PositionId);
             return View(emplPosHistory);
         }
 
@@ -101,7 +100,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeId,PositionId,FacultyId")] EmplPosHistory emplPosHistory)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeId,PositionId,WorkStartDate,WorkEndDate,FacultyId")] EmplPosHistory emplPosHistory)
         {
             if (id != emplPosHistory.Id)
             {
@@ -130,7 +129,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             }
             ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "FullName", emplPosHistory.EmployeeId);
             ViewData["FacultyId"] = new SelectList(_context.Faculties, "Id", "Name", emplPosHistory.FacultyId);
-            ViewData["PositionId"] = new SelectList(_context.Set<Position>(), "Id", "Name", emplPosHistory.PositionId);
+            ViewData["PositionId"] = new SelectList(_context.Positions, "Id", "Name", emplPosHistory.PositionId);
             return View(emplPosHistory);
         }
 

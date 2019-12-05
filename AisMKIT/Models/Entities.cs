@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AisMKIT.Models
 {
-    public class ListOfEducations
+    public class EduInstitution
     {
         public int Id { get; set; }
         
@@ -24,11 +24,23 @@ namespace AisMKIT.Models
         
         [Display(Name = "Доменое имя")]
         public string DomenNames { get; set; }
-        
+
+        [Display(Name = "Факс")]
+        public string Fax { get; set; }
+
+
+        [Display(Name = "Электронная почта")]
+        public string Email { get; set; }
+
+
         [Display(Name = "Дата основания")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateOfCreated { get; set; }
+
+        [Display(Name = "Краткая информация")]
+        public string BriefInfo { get; set; }
+
 
         [Display(Name = "Категория")]
         public int ClUchZavedCategoryId { get; set; }

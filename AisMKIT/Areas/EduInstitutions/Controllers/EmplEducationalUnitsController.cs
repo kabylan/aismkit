@@ -62,7 +62,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,EmployeeId,EducationalUnitId,FacultyId")] EmplEducationalUnit emplEducationalUnit)
+        public async Task<IActionResult> Create([Bind("Id,EmployeeId,EducationalUnitId,WorkStartDate,WorkEndDate,FacultyId")] EmplEducationalUnit emplEducationalUnit)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeId,EducationalUnitId,FacultyId")] EmplEducationalUnit emplEducationalUnit)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeId,EducationalUnitId,WorkStartDate,WorkEndDate,FacultyId")] EmplEducationalUnit emplEducationalUnit)
         {
             if (id != emplEducationalUnit.Id)
             {

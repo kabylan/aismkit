@@ -1,6 +1,5 @@
 ﻿@model AisMKIT.Models.ListsEduInstitutions
 
-
 @{
     ViewData["Title"] = "Details";
 }
@@ -8,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>ListOfEducations</h4>
+    <h4>EduInstitution</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -36,10 +35,28 @@
             @Html.DisplayFor(model => model.EduInstitution.DomenNames)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EduInstitution.Fax)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EduInstitution.Fax)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EduInstitution.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EduInstitution.Email)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EduInstitution.DateOfCreated)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EduInstitution.DateOfCreated)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EduInstitution.BriefInfo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EduInstitution.BriefInfo)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EduInstitution.ClUchZavedCategory)
@@ -53,6 +70,7 @@
     <a asp-action="Edit" asp-route-id="@Model.EduInstitution.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
 
 
 <h1>Faculties</h1>
@@ -70,7 +88,7 @@
                 @Html.DisplayNameFor(model => model.Faculties.FirstOrDefault().Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Faculties.FirstOrDefault().listOfEducationsModel)
+                @Html.DisplayNameFor(model => model.Faculties.FirstOrDefault().EduInstitution)
             </th>
             <th></th>
         </tr>
@@ -86,7 +104,7 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.listOfEducationsModel.Address)
+                    @Html.DisplayFor(modelItem => item.EduInstitution.Address)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

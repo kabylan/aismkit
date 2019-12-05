@@ -23,7 +23,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // GET: EduInstitutions/Main
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ListOfEducations.Include(l => l.ClUchZavedCategory);
+            var applicationDbContext = _context.EduInstitutions.Include(e => e.ClUchZavedCategory);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,33 +35,28 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var listOfEducations = await _context.ListOfEducations
-                .Include(l => l.ClUchZavedCategory)
+            var eduInstitution = await _context.EduInstitutions
+                .Include(e => e.ClUchZavedCategory)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (listOfEducations == null)
+            if (eduInstitution == null)
             {
                 return NotFound();
             }
-            //IEnumerable<FacultySpecialty>  = _context.
-            //    .Include(f => f.Faculty) // иниц. самого факультета
-            //    .Include(f => f.Specialty) // иниц. самого специальности
-            //    .Where(m => m.Id == id) // где Id == id
-            //    .ToList();
 
             // Факультеты
             // выбрать факультеты из таблицы Faculties
-            // где ListOfEducationsId равняется id
+            // где EduInstitutionId равняется id
             // т.е. факультеты этого учебного заведения
             IEnumerable<Faculty> faculties = _context.Faculties
-                .Include(l => l.listOfEducationsModel)
-                .Where(m => m.ListOfEducationsId == id)
+                .Include(l => l.EduInstitution)
+                .Where(m => m.EduInstitutionId == id)
                 .ToList();
 
             // Факультеты-Специальности
             IEnumerable<FacultySpecialty> facultySpecialties = _context.FacultySpecialties
                 .Include(f => f.Faculty) // иниц. самого факультета
                 .Include(f => f.Specialty) // иниц. самого специальности
-                .Where(m => m.Faculty.ListOfEducationsId == id) // где Id == id
+                .Where(m => m.Faculty.EduInstitutionId == id) // где Id == id
                 .ToList();
 
             // Сотрудники-Должностьи
@@ -69,7 +64,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 .Include(e => e.Employee)
                 .Include(e => e.Faculty)
                 .Include(e => e.Position)
-                .Where(e => e.Faculty.ListOfEducationsId == id) 
+                .Where(e => e.Faculty.EduInstitutionId == id)
                 .ToList();
 
             // Сотрудники-Подразделения
@@ -77,7 +72,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 .Include(e => e.Employee)
                 .Include(e => e.EducationalUnit)
                 .Include(e => e.Faculty)
-                .Where(e => e.Faculty.ListOfEducationsId == id)
+                .Where(e => e.Faculty.EduInstitutionId == id)
                 .ToList();
 
             // Все Должности в БД
@@ -95,7 +90,7 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             // Все нужные перечисления в представлении, содержаться в модели ListsEduInstitutions
             ListsEduInstitutions listsForEduInstitution = new ListsEduInstitutions();
 
-            listsForEduInstitution.EduInstitution = listOfEducations; // Рассматриваемая Учебное заведение
+            listsForEduInstitution.EduInstitution = eduInstitution; // Рассматриваемая Учебное заведение
             listsForEduInstitution.Faculties = faculties;
             listsForEduInstitution.FacultySpecialties = facultySpecialties;
             listsForEduInstitution.EmplPosHistories = emplPosHistories;
@@ -120,16 +115,16 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,INN,Name,Address,DomenNames,DateOfCreated,ClUchZavedCategoryId")] ListOfEducations listOfEducations)
+        public async Task<IActionResult> Create([Bind("Id,INN,Name,Address,DomenNames,Fax,Email,DateOfCreated,BriefInfo,ClUchZavedCategoryId")] EduInstitution eduInstitution)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(listOfEducations);
+                _context.Add(eduInstitution);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClUchZavedCategoryId"] = new SelectList(_context.ClUchZavedCategory, "Id", "Name", listOfEducations.ClUchZavedCategoryId);
-            return View(listOfEducations);
+            ViewData["ClUchZavedCategoryId"] = new SelectList(_context.ClUchZavedCategory, "Id", "Name", eduInstitution.ClUchZavedCategoryId);
+            return View(eduInstitution);
         }
 
         // GET: EduInstitutions/Main/Edit/5
@@ -140,13 +135,13 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var listOfEducations = await _context.ListOfEducations.FindAsync(id);
-            if (listOfEducations == null)
+            var eduInstitution = await _context.EduInstitutions.FindAsync(id);
+            if (eduInstitution == null)
             {
                 return NotFound();
             }
-            ViewData["ClUchZavedCategoryId"] = new SelectList(_context.ClUchZavedCategory, "Id", "Name", listOfEducations.ClUchZavedCategoryId);
-            return View(listOfEducations);
+            ViewData["ClUchZavedCategoryId"] = new SelectList(_context.ClUchZavedCategory, "Id", "Name", eduInstitution.ClUchZavedCategoryId);
+            return View(eduInstitution);
         }
 
         // POST: EduInstitutions/Main/Edit/5
@@ -154,9 +149,9 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,INN,Name,Address,DomenNames,DateOfCreated,ClUchZavedCategoryId")] ListOfEducations listOfEducations)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,INN,Name,Address,DomenNames,Fax,Email,DateOfCreated,BriefInfo,ClUchZavedCategoryId")] EduInstitution eduInstitution)
         {
-            if (id != listOfEducations.Id)
+            if (id != eduInstitution.Id)
             {
                 return NotFound();
             }
@@ -165,12 +160,12 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
             {
                 try
                 {
-                    _context.Update(listOfEducations);
+                    _context.Update(eduInstitution);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ListOfEducationsExists(listOfEducations.Id))
+                    if (!EduInstitutionExists(eduInstitution.Id))
                     {
                         return NotFound();
                     }
@@ -181,8 +176,8 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClUchZavedCategoryId"] = new SelectList(_context.ClUchZavedCategory, "Id", "Name", listOfEducations.ClUchZavedCategoryId);
-            return View(listOfEducations);
+            ViewData["ClUchZavedCategoryId"] = new SelectList(_context.ClUchZavedCategory, "Id", "Name", eduInstitution.ClUchZavedCategoryId);
+            return View(eduInstitution);
         }
 
         // GET: EduInstitutions/Main/Delete/5
@@ -193,15 +188,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
                 return NotFound();
             }
 
-            var listOfEducations = await _context.ListOfEducations
-                .Include(l => l.ClUchZavedCategory)
+            var eduInstitution = await _context.EduInstitutions
+                .Include(e => e.ClUchZavedCategory)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (listOfEducations == null)
+            if (eduInstitution == null)
             {
                 return NotFound();
             }
 
-            return View(listOfEducations);
+            return View(eduInstitution);
         }
 
         // POST: EduInstitutions/Main/Delete/5
@@ -209,15 +204,15 @@ namespace AisMKIT.Areas.EduInstitutions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var listOfEducations = await _context.ListOfEducations.FindAsync(id);
-            _context.ListOfEducations.Remove(listOfEducations);
+            var eduInstitution = await _context.EduInstitutions.FindAsync(id);
+            _context.EduInstitutions.Remove(eduInstitution);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ListOfEducationsExists(int id)
+        private bool EduInstitutionExists(int id)
         {
-            return _context.ListOfEducations.Any(e => e.Id == id);
+            return _context.EduInstitutions.Any(e => e.Id == id);
         }
     }
 }

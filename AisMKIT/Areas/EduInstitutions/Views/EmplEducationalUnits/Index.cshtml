@@ -19,6 +19,12 @@
                 @Html.DisplayNameFor(model => model.EducationalUnit)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.WorkStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkEndDate)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Faculty)
             </th>
             <th></th>
@@ -32,6 +38,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EducationalUnit.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkEndDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Faculty.Id)

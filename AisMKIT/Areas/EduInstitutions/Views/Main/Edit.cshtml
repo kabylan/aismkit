@@ -1,12 +1,12 @@
-﻿@model AisMKIT.Models.ListOfEducations
+﻿@model AisMKIT.Models.EduInstitution
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Редактирование</h1>
 
-<h4>ListOfEducations</h4>
+<h4>Учебное заведение</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -34,9 +34,24 @@
                 <span asp-validation-for="DomenNames" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Fax" class="control-label"></label>
+                <input asp-for="Fax" class="form-control" />
+                <span asp-validation-for="Fax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="DateOfCreated" class="control-label"></label>
                 <input asp-for="DateOfCreated" class="form-control" />
                 <span asp-validation-for="DateOfCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BriefInfo" class="control-label"></label>
+                <input asp-for="BriefInfo" class="form-control" />
+                <span asp-validation-for="BriefInfo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ClUchZavedCategoryId" class="control-label"></label>
@@ -44,13 +59,13 @@
                 <span asp-validation-for="ClUchZavedCategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>
 
