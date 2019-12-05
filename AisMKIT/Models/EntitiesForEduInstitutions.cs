@@ -48,13 +48,14 @@ namespace AisMKIT.Models
 
         [Display(Name = "Специальность")]
         public int? SpecialtyId { get; set; }
-
+        [Display(Name = "Специальность")]
         public Specialty Specialty { get; set; }
 
 
         [Display(Name = "Факультет")]
         public int? FacultyId { get; set; }
 
+        [Display(Name = "Факультет")]
         public Faculty Faculty { get; set; }
     }
 
@@ -93,12 +94,14 @@ namespace AisMKIT.Models
         [Display(Name = "Сотрудник")]
         public int? EmployeeId { get; set; }
 
+        [Display(Name = "Сотрудник")]
         public Employee Employee { get; set; }
 
 
         [Display(Name = "Должность")]
         public int? PositionId { get; set; }
 
+        [Display(Name = "Должность")]
         public Position Position { get; set; }
 
         [Display(Name = "Начало работы")]
@@ -116,6 +119,7 @@ namespace AisMKIT.Models
         [Display(Name = "Факультет")]
         public int? FacultyId { get; set; }
 
+        [Display(Name = "Факультет")]
         public Faculty Faculty { get; set; }
     }
    
@@ -136,12 +140,12 @@ namespace AisMKIT.Models
 
         [Display(Name = "Сотрудник")]
         public int? EmployeeId { get; set; }
-
+        [Display(Name = "Сотрудник")]
         public Employee Employee { get; set; }
 
         [Display(Name = "Подразделение")]
         public int? EducationalUnitId { get; set; }
-
+        [Display(Name = "Подразделение")]
         public EducationalUnit EducationalUnit { get; set; }
 
 
@@ -157,7 +161,7 @@ namespace AisMKIT.Models
 
         [Display(Name = "Факультет")]
         public int? FacultyId { get; set; }
-
+        [Display(Name = "Факультет")]
         public Faculty Faculty { get; set; }
     }
 

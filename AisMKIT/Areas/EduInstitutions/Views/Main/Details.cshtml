@@ -127,6 +127,9 @@
                 @Html.DisplayNameFor(model => model.FacultySpecialties.FirstOrDefault().Specialty.Name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.FacultySpecialties.FirstOrDefault().Specialty.Description)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.FacultySpecialties.FirstOrDefault().Faculty.Name)
             </th>
             <th></th>
@@ -135,19 +138,22 @@
     <tbody>
         @foreach (var item in Model.FacultySpecialties)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Specialty.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Faculty.Name)
-                </td>
-                <td>
-                    <a asp-controller="FacultySpecialties" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                    <a asp-controller="FacultySpecialties" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
-                    <a asp-controller="FacultySpecialties" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specialty.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specialty.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faculty.Name)
+            </td>
+            <td>
+                <a asp-controller="FacultySpecialties" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-controller="FacultySpecialties" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-controller="FacultySpecialties" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -295,10 +301,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Employees.FirstOrDefault().FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Employees.FirstOrDefault().SecondName)
+                @Html.DisplayNameFor(model => model.Employees.FirstOrDefault().FullName)
             </th>
             <th></th>
         </tr>
@@ -308,10 +311,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SecondName)
+                    @Html.DisplayFor(modelItem => item.FullName)
                 </td>
                 <td>
                     <a asp-controller="Employees" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
