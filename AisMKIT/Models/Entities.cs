@@ -44,6 +44,7 @@ namespace AisMKIT.Models
 
         [Display(Name = "Категория")]
         public int ClUchZavedCategoryId { get; set; }
+        [Display(Name = "Категория")]
         public ClUchZavedCategory ClUchZavedCategory { get; set; }
 
         // список факультетов 

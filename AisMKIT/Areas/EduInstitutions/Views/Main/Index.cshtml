@@ -13,28 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.INN)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Address)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DomenNames)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Fax)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateOfCreated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BriefInfo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ClUchZavedCategory)
@@ -46,28 +34,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.INN)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DomenNames)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Fax)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BriefInfo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ClUchZavedCategory.Name)

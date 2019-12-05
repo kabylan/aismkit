@@ -88,9 +88,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Faculties.FirstOrDefault().Description)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Faculties.FirstOrDefault().EduInstitution)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -103,9 +100,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EduInstitution.Name)
                 </td>
                 <td>
                     <a asp-controller="Faculties" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
